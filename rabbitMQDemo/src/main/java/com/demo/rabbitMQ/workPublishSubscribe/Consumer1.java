@@ -1,4 +1,4 @@
-package com.demo.rabbitMQ.workFair;
+package com.demo.rabbitMQ.workPublishSubscribe;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -10,18 +10,21 @@ import com.rabbitmq.client.Envelope;
 import com.rabbitmq.client.AMQP.BasicProperties;
 
 public class Consumer1 {
-	
-	private static final String QUEUE_NAME="work_queues_test";
-	
-	public static void main(String[] args) throws IOException, TimeoutException {
+	//队列
+	private static final String QUEUE_NAME="test_queues_exchange_fanout1";
+	//交换机
+	private static final String EXCHANGE_NAME="test_exchange_fanout";
+	public static void main(String[] args) throws IOException, TimeoutException
+	{
 		//获取连接
 		Connection connection = ConnectionUtils.getConnection();
 		//获取通道
 		Channel channel = connection.createChannel();
-		//消息持久化
-		boolean durable=false;
 		//声明队列
-		channel.queueDeclare(QUEUE_NAME, durable, false, false, null);
+		channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+		//绑定队列到交换机转发器
+		channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, "");
+		
 		//保证一次只分发一个
 		channel.basicQos(1);
 		//定义一个消费者
@@ -32,9 +35,9 @@ public class Consumer1 {
 			public void handleDelivery(String consumerTag,Envelope envelope,BasicProperties basicProperties,byte[] body) throws IOException 
 			{
 				String msg=new String(body,"utf-8");
-				System.out.println("===========:"+msg);
+				System.out.println("消费者1===========:"+msg);
 				try {
-					Thread.sleep(5000);
+					Thread.sleep(1000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}finally 
