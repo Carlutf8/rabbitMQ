@@ -24,7 +24,10 @@ public class Produce {
 		channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 		//4.发布消息
 		String msg="我是生产者发出的消息！2";
+		
+		//发布消息
 		channel.basicPublish("", QUEUE_NAME, null,msg.getBytes());
+		
 		System.out.println("=============消息已发出===============");
 		//关闭通道和连接
 		channel.close();

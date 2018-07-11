@@ -17,9 +17,11 @@ public class Produce
 		Channel channel = connection.createChannel();
 		//声明交换机   fanout一种分发模式
 		channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
+		
 		String msg="测试一下啊";
 		//向交换机发送消息
 		channel.basicPublish(EXCHANGE_NAME, "", null, msg.getBytes());
+		
 		System.out.println("消息已经发送："+msg);
 		channel.close();
 		connection.close();
