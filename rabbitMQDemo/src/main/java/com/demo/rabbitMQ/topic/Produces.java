@@ -5,6 +5,11 @@ import java.util.concurrent.TimeoutException;
 import com.demo.rabbitMQ.util.ConnectionUtils;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
+/**
+ * 主题模式
+ * @author Administrator
+ *
+ */
 public class Produces {
 	
 	private static final String EXCHANGE_NAME="test_exchange_topic";

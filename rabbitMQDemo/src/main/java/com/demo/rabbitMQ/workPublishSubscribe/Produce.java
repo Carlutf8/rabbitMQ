@@ -6,6 +6,11 @@ import com.demo.rabbitMQ.util.ConnectionUtils;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 
+/**
+ * 订阅模式
+ * @author Administrator
+ *
+ */
 public class Produce
 {
 	private static final String EXCHANGE_NAME="test_exchange_fanout";

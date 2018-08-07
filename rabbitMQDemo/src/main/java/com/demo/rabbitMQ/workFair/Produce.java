@@ -6,6 +6,11 @@ import com.demo.rabbitMQ.util.ConnectionUtils;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 
+/**
+ * 工作队列公平分发
+ * @author Administrator
+ *
+ */
 public class Produce {
 	
 	private static final String QUEUE_NAME="work_queues_test";

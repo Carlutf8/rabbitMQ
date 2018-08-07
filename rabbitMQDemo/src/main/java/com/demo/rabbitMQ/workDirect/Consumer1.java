@@ -9,7 +9,6 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
 import com.rabbitmq.client.AMQP.BasicProperties;
-
 public class Consumer1 {
 	//队列
     private static final String QUEUE_NAME="test_queues_direct2";
